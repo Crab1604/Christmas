@@ -395,8 +395,7 @@ body {
     <p class="sub-text">
         Love uuuu ❤️
     </p>
-
-    <button onclick="closeLetter()">x</button>
+    <button id="closeLetterBtn">x</button>
 </div>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -405,9 +404,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // function openLetter() {
     //     document.getElementById("letter").style.display = "block";
     // }
-    window.closeLetter = function () {
-    document.getElementById("letter").style.display = "none";
-    }
+    document.getElementById("closeLetterBtn")
+    .addEventListener("pointerdown", function () {
+        document.getElementById("letter").style.display = "none";
+    });
 
     /* TẠO SAO */
     for (let i = 0; i < 80; i++) {
@@ -465,6 +465,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 </body>
 </html>
+
 
 
 
