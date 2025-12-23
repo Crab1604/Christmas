@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christmas Stars for Cún</title>
+    <title>Christmas Tree & Secret Gifts</title>
     <style>
         body {
             margin: 0;
@@ -12,11 +12,10 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* ===== SAO NHẤP NHÁY (THEO GỢI Ý) ===== */
+        /* ===== SAO NHẤP NHÁY ===== */
         .star {
             position: fixed;
-            width: 2px;
-            height: 2px;
+            width: 2px; height: 2px;
             background: white;
             border-radius: 50%;
             opacity: 0.8;
@@ -35,7 +34,6 @@
             top: -20px;
             color: white;
             pointer-events: none;
-            user-select: none;
             z-index: 1000;
             animation: fall linear forwards;
             opacity: 0.6;
@@ -47,81 +45,116 @@
         /* ===== DÒNG CHỮ DƯỚI ĐÁY ===== */
         #overlay {
             position: absolute;
-            bottom: 30px;
+            bottom: 50px;
             width: 100%;
             text-align: center;
             color: #ffd700;
             letter-spacing: 4px;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-            z-index: 10;
+            z-index: 15;
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        #overlay:hover {
-            transform: scale(1.1);
-            text-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
         }
 
-        /* ===== LÁ THƯ PHÁT SÁNG ===== */
+        /* ===== LÁ THƯ CHÍNH ===== */
         #letter {
             z-index: 9999;
-            pointer-events: auto;
             display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
+            position: fixed;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             background: linear-gradient(145deg, #fffdf5, #ffeecb);
             padding: 32px;
             width: 320px;
             border-radius: 24px;
             border: 2px solid #eadc8d;
-            box-shadow: 
-                0 0 30px rgba(255, 241, 159, 0.8),
-                0 0 60px rgba(255, 215, 0, 0.3),
-                inset 0 0 15px rgba(255, 255, 255, 1);
+            box-shadow: 0 0 30px rgba(255, 241, 159, 0.8), 0 0 60px rgba(255, 215, 0, 0.3);
             text-align: center;
             animation: letterIn 0.7s cubic-bezier(.17, .89, .32, 1.49);
         }
-
         @keyframes letterIn {
-            from { transform: translate(-50%, -10%) scale(0.4); opacity: 0; }
+            from { transform: translate(-50%, -20%) scale(0.5); opacity: 0; }
             to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
 
-        .letter-icons {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+        /* ===== HỘP QUÀ (THEO GỢI Ý) ===== */
+        .gifts {
+            position: fixed;
+            bottom: 8vh;
+            width: 100%;
+            z-index: 8;
+            pointer-events: none;
         }
+        .gift {
+            position: absolute;
+            font-size: 48px;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.4));
+            user-select: none;
+        }
+        .gift:hover {
+            transform: scale(1.2) rotate(-5deg);
+        }
+        .g1 { left: 15%; transform: rotate(-8deg); }
+        .g2 { left: 30%; transform: rotate(6deg); }
+        .g3 { left: 50%; transform: rotate(-4deg); }
+        .g4 { left: 65%; transform: rotate(10deg); }
+        .g5 { left: 80%; transform: rotate(-6deg); }
 
-        .message {
-            font-family: 'Georgia', serif;
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #d42424;
+        /* ===== POPUP QUÀ (THEO GỢI Ý) ===== */
+        #giftPopup {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        .gift-box {
+            background: linear-gradient(145deg, #fffdf5, #ffeecb);
+            padding: 20px;
+            width: 320px;
+            border-radius: 18px;
+            border: 2px solid gold;
+            text-align: center;
+            animation: popUp 0.5s ease;
+            position: relative;
+        }
+        @keyframes popUp {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .gift-box img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #fff;
+        }
+        .gift-box p {
+            font-style: italic;
+            color: #333;
+            line-height: 1.5;
             margin: 10px 0;
         }
-
-        .sub-text {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #4a3b2a;
-            margin: 15px 0;
-            font-style: italic;
-        }
-
-        #closeLetterBtn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: none;
+        .gift-box button {
+            margin-top: 10px;
+            padding: 8px 20px;
+            border-radius: 20px;
             border: none;
-            font-size: 1.2rem;
-            color: #a6926d;
+            background: gold;
             cursor: pointer;
             font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px; right: 15px;
+            background: none; border: none;
+            font-size: 1.5rem; color: #999; cursor: pointer;
         }
 
         #modal-backdrop {
@@ -138,18 +171,34 @@
 
     <div id="modal-backdrop"></div>
     
-    <!-- LÁ THƯ -->
+    <!-- LÁ THƯ CHÍNH -->
     <div id="letter">
-        <p class="message">Merry Christmas</p>
-        <p class="sub-text">
-            Chúc Cún giáng sinh an lành, hạnh phúc,
-            luôn nở nụ cười, và kèm theo những điều
-            may mắn, tốt đẹp sẽ đến với em nhaa. ✨
+        <button id="closeLetterBtn" class="close-btn">&times;</button>
+        <div style="display: flex; justify-content: space-between; font-size: 1.5rem;"><span>🎄</span><span>🎄</span></div>
+        <p style="font-family: 'Georgia', serif; font-size: 1.8rem; font-weight: bold; color: #d42424; margin: 10px 0;">Merry Christmas</p>
+        <p style="font-size: 1rem; color: #4a3b2a; font-style: italic; line-height: 1.6;">
+            Chúc Cún giáng sinh an lành, hạnh phúc, luôn nở nụ cười, và kèm theo những điều may mắn, tốt đẹp sẽ đến với em nhaa. ✨
         </p>
-        <p class="sub-text" style="font-weight: bold; color: #d42424;">
-            Love uuuu ❤️
-        </p>
-        <button id="closeLetterBtn">x</button>
+        <p style="font-weight: bold; color: #d42424; margin-top: 10px;">Love uuuu ❤️</p>
+    </div>
+
+    <!-- HỘP QUÀ -->
+    <div class="gifts">
+        <div class="gift g1" onclick="openGift(1)">🎁</div>
+        <div class="gift g2" onclick="openGift(2)">🎁</div>
+        <div class="gift g3" onclick="openGift(3)">🎁</div>
+        <div class="gift g4" onclick="openGift(4)">🎁</div>
+        <div class="gift g5" onclick="openGift(5)">🎁</div>
+    </div>
+
+    <!-- POPUP QUÀ -->
+    <div id="giftPopup">
+        <div class="gift-box">
+            <button class="close-btn" onclick="closeGift()">&times;</button>
+            <img id="giftImg" src="" alt="Gift Image">
+            <p id="giftText"></p>
+            <button onclick="closeGift()">Đóng</button>
+        </div>
     </div>
 
     <div id="overlay">
@@ -159,9 +208,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <script>
-        // --- TẠO SAO (THEO GỢI Ý) ---
+        // DATA QUÀ TẶNG
+        const giftsData = {
+            1: { img: "image/gift1.jpg", text: "Món quà nhỏ nhưng mong mang lại nụ cười cho em 🎄" },
+            2: { img: "image/gift1.jpg", text: "Chúc em luôn hạnh phúc và được yêu thương 💖" },
+            3: { img: "image/gift1.jpg", text: "Hy vọng mỗi ngày của em đều là một ngày ấm áp ✨" },
+            4: { img: "image/gift1.jpg", text: "Cảm ơn em vì đã đến bên anh 🎁" },
+            5: { img: "image/gift1.jpg", text: "Merry Christmas, my dear ❤️" }
+        };
+
+        function openGift(id) {
+            const data = giftsData[id];
+            document.getElementById('giftImg').src = data.img;
+            document.getElementById('giftText').innerText = data.text;
+            document.getElementById('giftPopup').style.display = 'flex';
+        }
+
+        function closeGift() {
+            document.getElementById('giftPopup').style.display = 'none';
+        }
+
+        // TẠO SAO & TUYẾT
         function initStars() {
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 80; i++) {
                 const star = document.createElement("div");
                 star.className = "star";
                 star.style.left = Math.random() * window.innerWidth + "px";
@@ -171,68 +240,53 @@
             }
         }
 
-        // --- TUYẾT RƠI ---
         function createSnowflake() {
             const snow = document.createElement("div");
             snow.className = "snowflake";
             snow.textContent = "❄";
             snow.style.left = Math.random() * window.innerWidth + "px";
-            snow.style.fontSize = Math.random() * 6 + 5 + "px";
+            snow.style.fontSize = Math.random() * 6 + 5 + "px"; // Kích thước nhỏ (giảm 1/2)
             snow.style.animationDuration = Math.random() * 5 + 5 + "s";
             document.body.appendChild(snow);
             setTimeout(() => snow.remove(), 8000);
         }
         setInterval(createSnowflake, 200);
 
-        // --- TƯƠNG TÁC LÁ THƯ ---
+        // LÁ THƯ CHÍNH
         const overlay = document.getElementById('overlay');
         const letter = document.getElementById('letter');
         const backdrop = document.getElementById('modal-backdrop');
-        const closeBtn = document.getElementById('closeLetterBtn');
+        const closeLetterBtn = document.getElementById('closeLetterBtn');
 
-        overlay.addEventListener('click', () => {
-            letter.style.display = 'block';
-            backdrop.style.display = 'block';
-        });
+        overlay.onclick = () => { letter.style.display = 'block'; backdrop.style.display = 'block'; };
+        closeLetterBtn.onclick = () => { letter.style.display = 'none'; backdrop.style.display = 'none'; };
+        backdrop.onclick = () => { letter.style.display = 'none'; backdrop.style.display = 'none'; };
 
-        const closeLetter = () => {
-            letter.style.display = 'none';
-            backdrop.style.display = 'none';
-        };
-        closeBtn.addEventListener('click', closeLetter);
-        backdrop.addEventListener('click', closeLetter);
-
-        // --- THREE.JS TREE ---
+        // THREE.JS CÂY THÔNG
         let scene, camera, renderer, spiralPoints, starTop;
         let mouseX = 0, mouseY = 0;
-        let windowHalfX = window.innerWidth / 2;
-        let windowHalfY = window.innerHeight / 2;
-
         let drawProgress = 0;
-        const totalPoints = 25000;
-        const treeHeight = 750;
-        const baseRadius = 300;
-        const spiralTurns = 25;
 
         function initTree() {
             scene = new THREE.Scene();
             scene.fog = new THREE.FogExp2(0x010205, 0.0006);
-
-            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 5000);
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 1, 5000);
             camera.position.set(0, 200, 1100);
 
+            const totalPoints = 25000;
+            const treeHeight = 750;
+            const baseRadius = 300;
             const geometry = new THREE.BufferGeometry();
             const positions = [];
             const colors = [];
 
             for (let i = 0; i < totalPoints; i++) {
                 const ratio = i / totalPoints;
-                const angle = ratio * Math.PI * 2 * spiralTurns;
+                const angle = ratio * Math.PI * 2 * 25;
                 const y = (ratio * treeHeight) - (treeHeight / 2);
                 const radius = baseRadius * (1 - ratio);
-                const spread = 25 * (1 - ratio); 
-                positions.push(Math.cos(angle) * radius + (Math.random()-0.5)*spread, y, Math.sin(angle) * radius + (Math.random()-0.5)*spread);
-
+                positions.push(Math.cos(angle)*radius + (Math.random()-0.5)*25, y, Math.sin(angle)*radius + (Math.random()-0.5)*25);
+                
                 const color = new THREE.Color();
                 const rand = Math.random();
                 if (rand > 0.8) color.setHex(0xfff5e6);
@@ -245,15 +299,13 @@
             geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
             geometry.setDrawRange(0, 0);
 
-            spiralPoints = new THREE.Points(geometry, new THREE.PointsMaterial({
-                size: 3, vertexColors: true, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending
-            }));
+            spiralPoints = new THREE.Points(geometry, new THREE.PointsMaterial({size: 3, vertexColors: true, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending}));
             scene.add(spiralPoints);
 
-            // Ngôi sao trên đỉnh
+            // Ngôi sao đỉnh
             const starGeom = new THREE.BufferGeometry();
             const starPos = [];
-            for (let i = 0; i < 1500; i++) {
+            for (let i = 0; i < 1200; i++) {
                 const angle = Math.random() * Math.PI * 2;
                 const r = (Math.floor((angle * 5) / (Math.PI * 2) * 2) % 2 === 0) ? 65 : 20;
                 starPos.push(Math.cos(angle)*r*Math.random(), (treeHeight/2)+50 + Math.sin(angle)*r*Math.random(), (Math.random()-0.5)*20);
@@ -267,31 +319,26 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
             document.body.appendChild(renderer.domElement);
 
-            window.addEventListener('resize', () => {
-                windowHalfX = window.innerWidth / 2; windowHalfY = window.innerHeight / 2;
+            window.onresize = () => {
                 camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
-            });
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX - windowHalfX; mouseY = e.clientY - windowHalfY;
-            });
+            };
+            document.onmousemove = (e) => { mouseX = e.clientX - window.innerWidth/2; mouseY = e.clientY - window.innerHeight/2; };
         }
 
         function animate() {
             requestAnimationFrame(animate);
-            const time = Date.now() * 0.001;
             if (drawProgress < 1) {
-                drawProgress += 0.001;
-                spiralPoints.geometry.setDrawRange(0, Math.floor(drawProgress * totalPoints));
+                drawProgress += 0.0015; // Tốc độ vẽ chậm
+                spiralPoints.geometry.setDrawRange(0, Math.floor(drawProgress * 25000));
             } else {
                 if (starTop.material.opacity < 1) starTop.material.opacity += 0.02;
             }
             spiralPoints.rotation.y += 0.005;
             starTop.rotation.y += 0.01;
-            camera.position.x += (mouseX * 0.6 - camera.position.x) * 0.05;
-            camera.position.y += (-mouseY * 0.6 - camera.position.y) * 0.05;
+            camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY * 0.5 - camera.position.y) * 0.05;
             camera.lookAt(0, 0, 0);
-            spiralPoints.material.size = 2.5 + Math.sin(time * 4) * 1.5;
             renderer.render(scene, camera);
         }
 
