@@ -328,7 +328,7 @@
         function animate() {
             requestAnimationFrame(animate);
             if (drawProgress < 1) {
-                drawProgress += 0.0015; // Tốc độ vẽ chậm
+                drawProgress += 0.0025; // Tốc độ vẽ 
                 spiralPoints.geometry.setDrawRange(0, Math.floor(drawProgress * 25000));
             } else {
                 if (starTop.material.opacity < 1) starTop.material.opacity += 0.02;
@@ -347,5 +347,6 @@
     </script>
 </body>
 </html>
+
 
 
