@@ -49,6 +49,7 @@ body {
     transition: transform 0.3s ease;
     z-index: 10;
     user-select: none;
+    touch-action: manipulation;
 }
 .tree-container:hover { transform: scale(1.1); }
 .tree-container:active { transform: scale(0.9); }
@@ -351,7 +352,7 @@ body {
 <body>
 
 <!-- CÂY THÔNG -->
-<div class="tree-container" onclick="openLetter()">🎄</div>
+<div class="tree-container" id="tree">🎄</div>
 <!-- ĐỒI TUYẾT -->
 <div class="snow-hills">
     <div class="hill back"></div>
@@ -451,11 +452,18 @@ document.addEventListener("DOMContentLoaded", function () {
     window.closeGift = function() {
         document.getElementById("giftPopup").style.display = "none";
     }
-
+    /* ===== FIX MOBILE CLICK CÂY THÔNG ===== */
+    const tree = document.getElementById("tree");
+    tree.addEventListener("pointerdown", function (e) {
+    e.preventDefault();
+    document.getElementById("letter").style.display = "block";
+    });
+    
 });
 </script>
 </body>
 </html>
+
 
 
 
