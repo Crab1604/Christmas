@@ -57,6 +57,7 @@ body {
 /* ===== LÁ THƯ PHÁT SÁNG ===== */
 #letter {
     z-index: 9999;
+    pointer-events: auto;
     display: none;
     position: absolute;
     background: linear-gradient(145deg, #fffdf5, #ffeecb);
@@ -401,11 +402,11 @@ body {
 document.addEventListener("DOMContentLoaded", function () {
 
     /* MỞ / ĐÓNG THƯ */
-    function openLetter() {
-        document.getElementById("letter").style.display = "block";
-    }
-    function closeLetter() {
-        document.getElementById("letter").style.display = "none";
+    // function openLetter() {
+    //     document.getElementById("letter").style.display = "block";
+    // }
+    window.closeLetter = function () {
+    document.getElementById("letter").style.display = "none";
     }
 
     /* TẠO SAO */
@@ -464,6 +465,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 </body>
 </html>
+
 
 
 
