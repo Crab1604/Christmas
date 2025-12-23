@@ -139,6 +139,22 @@
             line-height: 1.5;
             margin: 10px 0;
         }
+        /* NÚT ĐÓNG Ở DƯỚI */
+        .gift-box .action-btn {
+            padding: 10px 30px;
+            border-radius: 25px;
+            border: none;
+            background: linear-gradient(to bottom, #ffd700, #e6c200);
+            color: #4a3b2a;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.2s;
+        }
+        .gift-box .action-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
         .gift-box button {
             margin-top: 10px;
             padding: 8px 20px;
@@ -194,10 +210,9 @@
     <!-- POPUP QUÀ -->
     <div id="giftPopup">
         <div class="gift-box">
-            <button class="close-btn" onclick="closeGift()">&times;</button>
             <img id="giftImg" src="" alt="Gift Image">
-            <p id="giftText"></p>
-            <button onclick="closeGift()">Đóng</button>
+        <p id="giftText"></p>
+        <button class="action-btn" onclick="closeGift()">Đóng</button>
         </div>
     </div>
 
@@ -347,6 +362,7 @@
     </script>
 </body>
 </html>
+
 
 
 
