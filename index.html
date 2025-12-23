@@ -372,7 +372,7 @@ body {
     <div class="gift-box">
         <img id="giftImg" src="" alt="gift">
         <p id="giftText"></p>
-        <button onclick="closeGift()">Đóng</button>
+        <button onclick="closeGift()">x</button>
     </div>
 </div>
 
@@ -395,73 +395,67 @@ body {
 
     <button onclick="closeLetter()">x</button>
 </div>
-
 <script>
-/* MỞ / ĐÓNG THƯ */
-function openLetter() {
-    document.getElementById("letter").style.display = "block";
-}
-function closeLetter() {
-    document.getElementById("letter").style.display = "none";
-}
+document.addEventListener("DOMContentLoaded", function () {
 
-/* TẠO SAO */
-for (let i = 0; i < 80; i++) {
-    const star = document.createElement("div");
-    star.className = "star";
-    star.style.left = Math.random() * innerWidth + "px";
-    star.style.top = Math.random() * innerHeight + "px";
-    star.style.animationDelay = Math.random() * 2 + "s";
-    document.body.appendChild(star);
-}
-
-/* TUYẾT */
-function createSnowflake() {
-    const snow = document.createElement("div");
-    snow.className = "snowflake";
-    snow.textContent = "❄";
-    snow.style.left = Math.random() * innerWidth + "px";
-    snow.style.fontSize = Math.random() * 12 + 10 + "px";
-    snow.style.animationDuration = Math.random() * 5 + 5 + "s";
-    document.body.appendChild(snow);
-    setTimeout(() => snow.remove(), 10000);
-}
-setInterval(createSnowflake, 180);
-const giftsData = {
-    1: {
-        img: "image/gift1.jpg",
-        text: "Hello bro, code hông được xịn xò cho lắm nhưng mà iu em. hẹ hẹ"
-    },
-    2: {
-        img: "image/gift2.jpg",
-        text: "aaaaa ngiu ai đây mà xinh thé nhỉiii"
-    },
-    3: {
-        img: "image/gift3.jpg",
-        text: "giè mong đợi gì ở đây á?? ko có gì hết, lêu lêu"
-    },
-    4: {
-        img: "image/gift4.jpg",
-        text: "thả tim nè ❤️ kkk"
-    },
-    5: {
-        img: "image/gift5.jpg",
-        text: "ỏooooo đẹp đôi thế này"
+    /* MỞ / ĐÓNG THƯ */
+    function openLetter() {
+        document.getElementById("letter").style.display = "block";
     }
-};
+    function closeLetter() {
+        document.getElementById("letter").style.display = "none";
+    }
 
-function openGift(id) {
-    document.getElementById("giftImg").src = giftsData[id].img;
-    document.getElementById("giftText").innerText = giftsData[id].text;
-    document.getElementById("giftPopup").style.display = "flex";
-}
+    /* TẠO SAO */
+    for (let i = 0; i < 80; i++) {
+        const star = document.createElement("div");
+        star.className = "star";
+        star.style.left = Math.random() * innerWidth + "px";
+        star.style.top = Math.random() * innerHeight + "px";
+        star.style.animationDelay = Math.random() * 2 + "s";
+        document.body.appendChild(star);
+    }
 
-function closeGift() {
-    document.getElementById("giftPopup").style.display = "none";
-}
+    /* TUYẾT */
+    function createSnowflake() {
+        const snow = document.createElement("div");
+        snow.className = "snowflake";
+        snow.textContent = "❄";
+        snow.style.left = Math.random() * innerWidth + "px";
+        snow.style.fontSize = Math.random() * 12 + 10 + "px";
+        snow.style.animationDuration = Math.random() * 5 + 5 + "s";
+        document.body.appendChild(snow);
+        setTimeout(() => snow.remove(), 10000);
+    }
+    setInterval(createSnowflake, 180);
 
+    /* DATA QUÀ */
+    const giftsData = {
+        1: { img: "image/gift1.jpg", text: "Hello bro, code hông được xịn xò cho lắm nhưng mà iu em. hẹ hẹ" },
+        2: { img: "image/gift2.jpg", text: "aaaaa ngiu ai đây mà xinh thé nhỉiii" },
+        3: { img: "image/gift3.jpg", text: "giè mong đợi gì ở đây á?? ko có gì hết, lêu lêu" },
+        4: { img: "image/gift4.jpg", text: "thả tim nè ❤️ kkk" },
+        5: { img: "image/gift5.jpg", text: "ỏooooo đẹp đôi thế này" }
+    };
+
+    window.openGift = function(id) {
+        const img = document.getElementById("giftImg");
+        const text = document.getElementById("giftText");
+
+        img.src = giftsData[id].img;
+        text.innerText = giftsData[id].text;
+
+        document.getElementById("giftPopup").style.display = "flex";
+    }
+
+    window.closeGift = function() {
+        document.getElementById("giftPopup").style.display = "none";
+    }
+
+});
 </script>
 </body>
 </html>
+
 
 
